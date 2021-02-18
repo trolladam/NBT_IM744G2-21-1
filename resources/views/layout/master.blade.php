@@ -10,7 +10,7 @@
 </head>
 <body>
     @include('layout._header')
-    <main class="container">
+    <main class="container py-5">
         @yield('content')
     </main>
 

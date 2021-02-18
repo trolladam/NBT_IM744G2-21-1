@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
+// Auth routes
 
-Route::get('/test', function() {
-    echo 'Hello from route';
-});
+Route::get('/sign-up', [Controllers\Auth\RegisterController::class, 'create'])->name('auth.register');
+Route::post('/sign-up', [Controllers\Auth\RegisterController::class, 'store']);
