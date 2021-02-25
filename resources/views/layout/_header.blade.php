@@ -9,8 +9,25 @@
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Other</a></li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
+            @auth
+                <a href="#" class="btn btn-outline-success btn-sm ms-md-3">Make a post</a>
+            @else
+                <a href="#" class="btn btn-outline-success btn-sm ms-md-3">Sign in</a>
+                <a href="#" class="btn btn-outline-secondary btn-sm ms-md-3">Sign up</a>
+            @endauth
         </div>
     </div>
 </nav>

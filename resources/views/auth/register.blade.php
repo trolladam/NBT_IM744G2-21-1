@@ -11,31 +11,46 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">First name</label>
-                            <input class="form-control" type="text" name="firstname" />
+                            <input class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" type="text" name="firstname" value="{{ old('firstname') }}" />
+                            @if ($errors->has('firstname'))
+                                <p class="invalid-feedback">{{ $errors->first('firstname') }}</p>
+                            @endif
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Last name</label>
-                            <input class="form-control" type="text" name="lastname" />
+                            <input class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" type="text" name="lastname" value="{{ old('lastname') }}" />
+                            @if ($errors->has('lastname'))
+                                <p class="invalid-feedback">{{ $errors->first('lastname') }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input class="form-control" type="text" name="email" />
+                        <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" name="email" value="{{ old('email') }}" />
+                        @if ($errors->has('email'))
+                            <p class="invalid-feedback">{{ $errors->first('email') }}</p>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input class="form-control" type="password" name="password" />
+                        <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" />
+                        @if ($errors->has('password'))
+                            <p class="invalid-feedback">{{ $errors->first('password') }}</p>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password confirmation</label>
-                        <input class="form-control" type="password" name="password_conf" />
+                        <input class="form-control" type="password" name="password_confirmation" />
                     </div>
                     <div class="mb-5">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="terms" id="terms">
+                            <input class="form-check-input{{ $errors->has('terms') ? ' is-invalid' : '' }}" type="checkbox" value="1" name="terms" id="terms" {{ old('terms') !== null ? 'checked' : '' }}>
                             <label class="form-check-label" for="terms">
-                                I read and understand the Terms and conditions
+                                Agree to terms and conditions
                             </label>
+                            @if ($errors->has('terms'))
+                                <p class="invalid-feedback">{{ $errors->first('terms') }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="d-grid">
@@ -47,3 +62,5 @@
     </div>
 </div>
 @endsection
+
+
