@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
-        <a href="#" class="navbar-brand">Bloggr</a>
+        <a href="{{ route('home') }}" class="navbar-brand">Bloggr</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,7 +17,14 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li>
+                                <form action="{{ route('auth.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        Sign out
+                                    </button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 @endif
@@ -25,8 +32,8 @@
             @auth
                 <a href="#" class="btn btn-outline-success btn-sm ms-md-3">Make a post</a>
             @else
-                <a href="#" class="btn btn-outline-success btn-sm ms-md-3">Sign in</a>
-                <a href="#" class="btn btn-outline-secondary btn-sm ms-md-3">Sign up</a>
+                <a href="{{ route('auth.register') }}" class="btn btn-outline-success btn-sm ms-md-3">Sign up</a>
+                <a href="{{ route('auth.login') }}" class="btn btn-outline-secondary btn-sm ms-md-3">Sign in</a>
             @endauth
         </div>
     </div>

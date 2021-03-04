@@ -20,3 +20,9 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/sign-up', [Controllers\Auth\RegisterController::class, 'create'])->name('auth.register');
 Route::post('/sign-up', [Controllers\Auth\RegisterController::class, 'store']);
+
+
+Route::get('/sign-in', [Controllers\Auth\LoginController::class, 'create'])->name('auth.login');
+Route::post('/sign-in', [Controllers\Auth\LoginController::class, 'store']);
+
+Route::post('/sing-out', [Controllers\Auth\LoginController::class, 'destroy'])->name('auth.logout');
