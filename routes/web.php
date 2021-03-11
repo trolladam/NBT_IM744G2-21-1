@@ -18,11 +18,18 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth routes
 
-Route::get('/sign-up', [Controllers\Auth\RegisterController::class, 'create'])->name('auth.register');
-Route::post('/sign-up', [Controllers\Auth\RegisterController::class, 'store']);
+Route::middleware(['guest'])->group(function () {
+    // guest only routes
+    Route::get('/sign-up', [Controllers\Auth\RegisterController::class, 'create'])->name('auth.register');
+    Route::post('/sign-up', [Controllers\Auth\RegisterController::class, 'store']);
 
+    Route::get('/sign-in', [Controllers\Auth\LoginController::class, 'create'])->name('auth.login');
+    Route::post('/sign-in', [Controllers\Auth\LoginController::class, 'store']);
+});
 
-Route::get('/sign-in', [Controllers\Auth\LoginController::class, 'create'])->name('auth.login');
-Route::post('/sign-in', [Controllers\Auth\LoginController::class, 'store']);
+Route::middleware(['auth'])->group(function () {
+    // auth only routes
+    Route::post('/sing-out', [Controllers\Auth\LoginController::class, 'destroy'])->name('auth.logout');
 
-Route::post('/sing-out', [Controllers\Auth\LoginController::class, 'destroy'])->name('auth.logout');
+    Route::get('/publish', [Controllers\PostController::class, 'create'])->name('post.create');
+});

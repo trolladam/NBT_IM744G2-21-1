@@ -53,9 +53,10 @@
                             @endif
                         </div>
                     </div>
-                    <div class="d-grid">
+                    <div class="d-grid mb-3">
                         <button class="btn btn-lg btn-primary" type="submit">Register</button>
                     </div>
+                    <p class="text-center mb-0">Already have an account? <a href="{{ route('auth.login') }}">Sign in here</a></p>
                 </form>
             </div>
         </div>

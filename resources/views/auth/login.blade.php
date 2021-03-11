@@ -31,9 +31,10 @@
                             </label>
                         </div>
                     </div>
-                    <div class="d-grid">
+                    <div class="d-grid mb-3">
                         <button class="btn btn-primary btn-lg" type="submit">Login</button>
                     </div>
+                    <p class="text-center mb-0">Don't have an account? <a href="{{ route('auth.register') }}">Sign up here</a></p>
                 </form>
             </div>
         </div>
