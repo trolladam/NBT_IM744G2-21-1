@@ -12,7 +12,7 @@
             </ul>
         </div>
         @auth
-            <a href="#" class="btn btn-outline-success btn-sm ms-3">Make a post</a>
+            <a href="{{ route('post.create') }}" class="btn btn-outline-success btn-sm ms-3">Make a post</a>
             <ul class="navbar-nav ms-3">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

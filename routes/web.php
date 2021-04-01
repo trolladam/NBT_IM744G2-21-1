@@ -32,4 +32,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sing-out', [Controllers\Auth\LoginController::class, 'destroy'])->name('auth.logout');
 
     Route::get('/publish', [Controllers\PostController::class, 'create'])->name('post.create');
+    Route::post('/publish', [Controllers\PostController::class, 'store']);
 });
