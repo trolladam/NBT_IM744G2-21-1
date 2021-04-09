@@ -12,11 +12,11 @@
 @endpush
 
 @section('content')
-<form action="{{ route('post.create') }}" method="POST">
+<form action="{{ route('post.edit', $post) }}" method="POST">
     @csrf
     <div class="d-flex align-items-center mb-5">
-        <h5 class="display-5 mb-0 text-center">{{ __("Make a post") }}</h5>
-        <button class="ms-auto btn btn-primary" type="submit">Publish</button>
+        <h5 class="display-5 mb-0 text-center">{{ $post->title }}</h5>
+        <button class="ms-auto btn btn-primary" type="submit">{{ __("Update") }}</button>
     </div>
     <div class="row">
         <div class="col-lg-6 col-xl-8 mb-3">
@@ -24,14 +24,14 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input class="form-control{{ $errors->has('post.title') ? ' is-invalid' : '' }}" type="text" name="post[title]" value="{{ old('post.title') }}">
+                        <input class="form-control{{ $errors->has('post.title') ? ' is-invalid' : '' }}" type="text" name="post[title]" value="{{ old('post.title') ?? $post->title }}">
                         @if ($errors->has('post.title'))
                             <p class="invalid-feedback">{{ $errors->first('post.title') }}</p>
                         @endif
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Content</label>
-                        <textarea id="editor" name="post[content]">{{ old('post.content') }}</textarea>
+                        <textarea id="editor" name="post[content]">{{ old('post.content') ?? $post->content }}</textarea>
                         @if ($errors->has('post.content'))
                             <p class="invalid-feedback">{{ $errors->first('post.content') }}</p>
                         @endif
@@ -47,7 +47,7 @@
                         <select class="form-control{{ $errors->has('post.topic_id') ? ' is-invalid' : '' }}" name="post[topic_id]">
                             <option value="">Select a topic</option>
                             @foreach ($topics as $topic)
-                                <option value="{{ $topic->id }}" {{ old('post.topic_id') == $topic->id ? 'selected' : '' }}>
+                                <option value="{{ $topic->id }}" {{ (old('post.topic_id') ?? $post->topic_id) == $topic->id ? 'selected' : '' }}>
                                     {{ $topic->title }}
                                 </option>
                             @endforeach
@@ -58,7 +58,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control{{ $errors->has('post.description') ? ' is-invalid' : '' }}" type="text" name="post[description]">{{ old('post.description') }}</textarea>
+                        <textarea class="form-control{{ $errors->has('post.description') ? ' is-invalid' : '' }}" type="text" name="post[description]">{{ old('post.description') ?? $post->description }}</textarea>
                         @if ($errors->has('post.description'))
                             <p class="invalid-feedback">{{ $errors->first('post.description') }}</p>
                         @endif
