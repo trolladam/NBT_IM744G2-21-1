@@ -1,13 +1,27 @@
 @extends('layout.master')
 
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" />
+@endpush
+
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js" integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w==" crossorigin="anonymous"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {
             console.error( error )
         })
+
+    Dropzone.autoDiscover = false
+    const myDropzone = new Dropzone('#image-upload', {
+        headers: {
+            'x-csrf-token': csrf,
+        },
+        paramName: 'image',
+        url: '{{ route("post.upload-image", $post) }}',
+    })
 </script>
 @endpush
 
@@ -40,6 +54,15 @@
             </div>
         </div>
         <div class="col-lg-6 col-xl-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    @if ($post->has_image)
+                    <img class="img-fluid" src="/uploads{{ $post->image }}" alt="{{ $post->title }}">
+                    @else
+                    <div id="image-upload" class="dropzone"></div>
+                    @endif
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">

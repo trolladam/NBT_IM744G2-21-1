@@ -36,4 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/post/{post}/edit', [Controllers\PostController::class, 'edit'])->name('post.edit');
     Route::post('/post/{post}/edit', [Controllers\PostController::class, 'update']);
+
+    Route::post('/post/{post}/upload-image', [Controllers\PostController::class, 'uploadImage'])->name('post.upload-image');
+    Route::post('/post/{post}/delete-image', [Controllers\PostController::class, 'deleteImage'])->name('post.delete-image');
 });
