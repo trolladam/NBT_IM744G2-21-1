@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function show(Post $post)
+    {
+        return view('post.show')->with(compact('post'));
+    }
+
     public function create()
     {
         $topics = Topic::all();

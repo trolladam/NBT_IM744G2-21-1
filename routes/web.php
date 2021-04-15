@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('post.show');
+
 // Auth routes
 
 Route::middleware(['guest'])->group(function () {
