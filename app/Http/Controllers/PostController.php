@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    function __construct() {
+        $this->authorizeResource(Post::class, 'post');
+    }
 
     public function show(Post $post)
     {
@@ -70,5 +73,13 @@ class PostController extends Controller
     public function deleteImage(Post $post)
     {
         dd('todo delete image');
+    }
+
+    protected function resourceAbilityMap()
+    {
+        $abilityMap = parent::resourceAbilityMap();
+        $abilityMap['uploadImage'] = 'update';
+        $abilityMap['deleteImage'] = 'update';
+        return $abilityMap;
     }
 }
