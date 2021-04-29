@@ -30,6 +30,7 @@
         @foreach($recent as $post)
             @include('post._item')
         @endforeach
+        {{ $recent->links() }}
     </div>
 </div>
 @endsection

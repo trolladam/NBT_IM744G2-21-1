@@ -10,8 +10,13 @@
     <h1>{{ $post->title }}</h1>
     <div>
         <p>
-            <img class="rounded-circle" width="15" src="{{ $post->author->avatar }}" alt="{{ $post->author->full_name }}" />
-            {{ $post->author->full_name }}
+
+            <a href="{{ route('profile.show', $post->author) }}">
+                <img class="rounded-circle" width="25" src="{{ $post->author->avatar }}" alt="{{ $post->author->full_name }}" />
+            </a>
+            <a href="{{ route('profile.show', $post->author) }}">
+                {{ $post->author->full_name }}
+            </a>
         </p>
     </div>
     <div class="row">
