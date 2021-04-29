@@ -24,5 +24,23 @@
             {!! $post->content !!}
         </div>
     </div>
+    <div>
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto">
+            <p>{{ __("Responses") }}</p>
+            @auth
+                <form class="mb-4" action="{{ route('post.comment', ['post' => $post]) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <textarea class="form-control" name="comment" placeholder="{{ __('Comment text...') }}"></textarea>
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-primary btn-lg" type="submit">Comment</button>
+                    </div>
+                </form>
+            @endauth
+            @foreach($post->comments as $comment)
+                @include('comment._item')
+            @endforeach
+    </div>
 </div>
 @endsection

@@ -43,4 +43,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/post/{post}/upload-image', [Controllers\PostController::class, 'uploadImage'])->name('post.upload-image');
     Route::post('/post/{post}/delete-image', [Controllers\PostController::class, 'deleteImage'])->name('post.delete-image');
+
+    Route::post('/post/{post}/comment', [Controllers\PostController::class, 'comment'])->name('post.comment');
 });

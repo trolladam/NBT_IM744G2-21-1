@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Image;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\Comment;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -73,6 +74,20 @@ class PostController extends Controller
     public function deleteImage(Post $post)
     {
         dd('todo delete image');
+    }
+
+    public function comment(Post $post, Request $request)
+    {
+        // todo: request should be validated before saving
+
+        $comment = new Comment;
+
+        $comment->user_id = Auth::user()->id;
+        $comment->message = $request->comment;
+
+        $post->comments()->save($comment);
+
+        return back()->with('success', __('Comments saved successfully'));
     }
 
     protected function resourceAbilityMap()
