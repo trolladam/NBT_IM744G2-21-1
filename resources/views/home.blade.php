@@ -4,17 +4,19 @@
 <div class="row mb-5">
     <div class="col-md-6 col-lg-4">
         <div class="featured-post">
-            <a href="{{ route('post.show', $featured_post) }}">
-                @if ($featured_post->has_image)
-                <img class="img-fluid" src="/uploads{{ $featured_post->image }}" alt="{{ $featured_post->title }}" />
-                @else
-                <img class="img-fluid" src="https://via.placeholder.com/1200" alt="{{ $featured_post->title }}" />
-                @endif
-            </a>
-            <h3 class="mt-3">
-                <a href="{{ route('post.show', $featured_post) }}">{{ $featured_post->title }}</a>
-            </h3>
-            <p>{{ $featured_post->description }}</p>
+            @if ($featured_post)
+                <a href="{{ route('post.show', $featured_post) }}">
+                    @if ($featured_post->has_image)
+                    <img class="img-fluid" src="/uploads{{ $featured_post->image }}" alt="{{ $featured_post->title }}" />
+                    @else
+                    <img class="img-fluid" src="https://via.placeholder.com/1200" alt="{{ $featured_post->title }}" />
+                    @endif
+                </a>
+                <h3 class="mt-3">
+                    <a href="{{ route('post.show', $featured_post) }}">{{ $featured_post->title }}</a>
+                </h3>
+                <p>{{ $featured_post->description }}</p>
+            @endif
         </div>
     </div>
     <div class="col-md-6 col-lg-8">
