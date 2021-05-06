@@ -17,4 +17,22 @@
             </p>
         </div>
     </div>
+    <div class="replies ps-5">
+        @if (!$comment->is_reply)
+            <form class="mb-4" action="{{ route('comment.reply', $comment) }}" method="POST">
+                @csrf
+                <input type="hidden" value="{{ URL::current() }}#comment-{{$comment->id}}" name="redirect_url">
+                <div class="mb-3">
+                    <textarea class="form-control" name="comment" placeholder="{{ __('Comment text...') }}"></textarea>
+                </div>
+                <div class="d-grid mb-3">
+                    <button class="btn btn-primary btn-lg" type="submit">Reply</button>
+                </div>
+            </form>
+        @endif
+
+        @foreach($comment->comments as $reply)
+            @include('comment._item', ['comment' => $reply])
+        @endforeach
+    </div>
 </div>

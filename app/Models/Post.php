@@ -22,13 +22,22 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function getHasImageAttribute() {
-        return $this->image !== null;
-    }
-
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')
             ->orderBy('created_at', 'desc');
+    }
+
+    public function getHasImageAttribute()
+    {
+        return $this->image !== null;
+    }
+
+    public function getMinutesToReadAttribute()
+    {
+        $wordPerMinute = 200;
+        $noOfWords = count(explode(" ", strip_tags($this->content)));
+        $readTime = ceil($noOfWords / $wordPerMinute);
+        return "${readTime} mintues to read";
     }
 }

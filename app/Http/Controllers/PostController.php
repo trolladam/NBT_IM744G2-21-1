@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
     function __construct() {
         $this->authorizeResource(Post::class, 'post');
     }
@@ -84,10 +85,15 @@ class PostController extends Controller
 
         $comment->user_id = Auth::user()->id;
         $comment->message = $request->comment;
-
         $post->comments()->save($comment);
 
         return back()->with('success', __('Comments saved successfully'));
+    }
+
+    public function destory(Post $post)
+    {
+        // todo delete post
+        return abort(404);
     }
 
     protected function resourceAbilityMap()

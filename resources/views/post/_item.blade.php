@@ -17,6 +17,12 @@
             <a href="{{ route('profile.show', $post->author) }}">
                 {{ $post->author->full_name }}
             </a>
+            @can('update', $post)
+                <a href="{{ route('post.edit', $post) }}">edit</a>
+            @endcan
+        </p>
+        <p>
+            {{ $post->minutes_to_read }}
         </p>
         <p>{{ $post->description }}</p>
     </div>

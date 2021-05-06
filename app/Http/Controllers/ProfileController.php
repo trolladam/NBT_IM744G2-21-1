@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function show(User $user)
     {
-        $posts = $user->posts()->paginate(8);
+        $posts = $user->posts()->orderBy('created_at', 'asc')->paginate(8);
         return view('profile.show')->with(compact('user', 'posts'));
     }
 }

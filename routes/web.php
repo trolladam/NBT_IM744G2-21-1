@@ -45,4 +45,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/post/{post}/delete-image', [Controllers\PostController::class, 'deleteImage'])->name('post.delete-image');
 
     Route::post('/post/{post}/comment', [Controllers\PostController::class, 'comment'])->name('post.comment');
+
+    Route::post('/comment/{comment}/reply', [Controllers\CommentController::class, 'reply'])->name('comment.reply');
 });

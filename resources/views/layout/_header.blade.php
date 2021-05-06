@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li><span class="dropdown-item">{{ Auth::user()->full_name }}</span></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.show', Auth::user()) }}">Profile</a></li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="POST">
                                 @csrf
